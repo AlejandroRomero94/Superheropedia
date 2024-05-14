@@ -56,6 +56,10 @@ dependencies {
     //ViewModels
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.3.1")
     implementation("androidx.compose.runtime:runtime-livedata:1.2.1")
+    //ComposeNavigation
+    implementation("androidx.navigation:navigation-compose:2.7.0")
+    //ComposeSerialization
+
     //Resto
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)

@@ -5,21 +5,17 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBar
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.tooling.preview.Preview
-import androidx.navigation.NavHostController
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import com.alejandro.superheropedia.ui.dcscreen.DcScreen
+import com.alejandro.superheropedia.ui.finderscreen.FinderScreen
 import com.alejandro.superheropedia.ui.mainscreen.MainScreen
-import com.alejandro.superheropedia.ui.mainscreen.MainScreenViewModel
 import com.alejandro.superheropedia.ui.mainscreen.MyTopAppBar
+import com.alejandro.superheropedia.ui.marvelscreen.MarvelScreen
 import com.alejandro.superheropedia.ui.navigation.MyBottomNavigation
 import com.alejandro.superheropedia.ui.theme.SuperheropediaTheme
-import java.lang.reflect.Modifier
 
 class MainActivity : ComponentActivity() {
     @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
@@ -28,19 +24,29 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             SuperheropediaTheme {
+
+                MainScreen()
+
+                /*
+                val navigationController=rememberNavController()
+                NavHost(navController = navigationController, startDestination="finder"){
+                    composable("finder"){ FinderScreen(navigationController) }
+                    composable("marvel"){ MarvelScreen(navigationController) }
+                    composable("dc"){ DcScreen(navigationController) }
+
+
+                }
+
+
+
             Scaffold(
                 topBar = {MyTopAppBar()},
-                bottomBar = { MyBottomNavigation()}
+                bottomBar = { MyBottomNavigation(navigationController)}
             ){
                 val padding=it
             }
 
-                /*Surface {
-                    MyTopAppBar()
-                    MyBottomNavigation()
-                }*/
-
-               // Scaffold { innerPadding ->
+*/
 
 
             }
