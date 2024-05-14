@@ -1,4 +1,4 @@
-package com.alejandro.superheropedia.ui.mainscreen.navigation
+package com.alejandro.superheropedia.ui.navigation
 
 import androidx.annotation.DrawableRes
 import androidx.compose.material.icons.Icons

@@ -13,10 +13,11 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.NavHostController
 import com.alejandro.superheropedia.ui.mainscreen.MainScreen
 import com.alejandro.superheropedia.ui.mainscreen.MainScreenViewModel
 import com.alejandro.superheropedia.ui.mainscreen.MyTopAppBar
-import com.alejandro.superheropedia.ui.mainscreen.navigation.MyBottomNavigation
+import com.alejandro.superheropedia.ui.navigation.MyBottomNavigation
 import com.alejandro.superheropedia.ui.theme.SuperheropediaTheme
 import java.lang.reflect.Modifier
 
@@ -27,7 +28,12 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             SuperheropediaTheme {
-            ViewContainer()
+            Scaffold(
+                topBar = {MyTopAppBar()},
+                bottomBar = { MyBottomNavigation()}
+            ){
+                val padding=it
+            }
 
                 /*Surface {
                     MyTopAppBar()
@@ -42,16 +48,7 @@ class MainActivity : ComponentActivity() {
         }
     }
 
-    private fun Scaffold(bottomBar: () -> Unit) {
 
-    }
-}
 
-@Preview
-@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
-@Composable
-fun ViewContainer(){
-    Scaffold(
-        topBar = { MyTopAppBar()}, content={ MainScreen(MainScreenViewModel()) }, bottomBar = { MyBottomNavigation()})
 
 }

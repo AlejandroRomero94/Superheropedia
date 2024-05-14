@@ -1,12 +1,16 @@
 package com.alejandro.superheropedia.ui.mainscreen
 
 import androidx.compose.runtime.Composable
-import com.alejandro.superheropedia.ui.mainscreen.navigation.MyBottomNavigation
+import androidx.navigation.NavHostController
+import com.alejandro.superheropedia.ui.navigation.MyBottomNavigation
 import java.lang.reflect.Modifier
 
 @Composable
-fun MainScreen(mainScreenViewModel: MainScreenViewModel){
+fun MainScreen(
+    mainScreenViewModel: MainScreenViewModel,
+    navController: NavHostController,
+) {
 
-MyBottomNavigation()
+
 
 }
