@@ -27,34 +27,11 @@ class MainActivity : ComponentActivity() {
 
                 MainScreen()
 
-                /*
-                val navigationController=rememberNavController()
-                NavHost(navController = navigationController, startDestination="finder"){
-                    composable("finder"){ FinderScreen(navigationController) }
-                    composable("marvel"){ MarvelScreen(navigationController) }
-                    composable("dc"){ DcScreen(navigationController) }
-
-
-                }
-
-
-
-            Scaffold(
-                topBar = {MyTopAppBar()},
-                bottomBar = { MyBottomNavigation(navigationController)}
-            ){
-                val padding=it
-            }
-
-*/
-
 
             }
 
         }
     }
-
-
 
 
 }

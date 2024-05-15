@@ -1,12 +1,15 @@
 package com.alejandro.superheropedia.ui.navigation
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.compose.currentBackStackEntryAsState
 import com.alejandro.superheropedia.model.NavigationBarScreen
 import com.alejandro.superheropedia.ui.dcscreen.DcScreen
 import com.alejandro.superheropedia.ui.finderscreen.FinderScreen
+import com.alejandro.superheropedia.ui.listscreen.ListScreen
 import com.alejandro.superheropedia.ui.marvelscreen.MarvelScreen
 
 
@@ -19,54 +22,11 @@ fun MyBottomNavigation(navController: NavHostController) {
             FinderScreen()
         }
         composable(route = NavigationBarScreen.Marvel.route) {
-            MarvelScreen()
+            MarvelScreen(navController=navController)
         }
         composable(route = NavigationBarScreen.Dc.route) {
-            DcScreen()
+            DcScreen(navController=navController)
         }
+        composable("List"){ ListScreen()}
     }
 }
-/*
-    NavigationBar(
-        containerColor = Color.Gray, contentColor = Color.White,
-    ) {
-        NavigationBarItem(
-            selected = index == 0,
-            onClick = {
-                index = 0
-                navController.navigate("finder")
-            },
-            icon = {
-                Icon(
-                    imageVector = Icons.Default.Search,
-                    contentDescription = "search"
-                )
-            }, label =
-            { Text(text = "Finder") })
-        NavigationBarItem(
-            selected = index == 1,
-            onClick = {
-                index = 1
-                navController.navigate("marveld")
-            },
-            icon = {
-                Icon(
-                    imageVector = Icons.Default.Star,
-                    contentDescription = "marvel"
-                )
-            }, label = { Text(text = "Marvel") })
-        NavigationBarItem(
-            selected = index == 2,
-            onClick = {
-                index = 2
-                navController.navigate("dc")
-            },
-            icon = {
-                Icon(
-                    imageVector = Icons.Default.Person,
-                    contentDescription = "dc"
-                )
-            }, label = { Text(text = "DC") })
-    }
-
-}*/
