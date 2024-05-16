@@ -1,11 +1,10 @@
-package com.alejandro.superheropedia.model
+package com.alejandro.superheropedia.domain
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.navigation.NavHostController
 
 sealed class NavigationBarScreen(
     val route: String,

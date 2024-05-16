@@ -8,7 +8,7 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavDestination
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavHostController
-import com.alejandro.superheropedia.model.NavigationBarScreen
+import com.alejandro.superheropedia.domain.NavigationBarScreen
 
 @Composable
 fun RowScope.AddItem(

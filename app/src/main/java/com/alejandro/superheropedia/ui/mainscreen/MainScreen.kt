@@ -8,7 +8,7 @@ import androidx.compose.runtime.getValue
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import com.alejandro.superheropedia.model.NavigationBarScreen
+import com.alejandro.superheropedia.domain.NavigationBarScreen
 import com.alejandro.superheropedia.ui.navigation.AddItem
 import com.alejandro.superheropedia.ui.navigation.MyBottomNavigation
 

@@ -16,7 +16,9 @@ import com.alejandro.superheropedia.ui.mainscreen.MyTopAppBar
 import com.alejandro.superheropedia.ui.marvelscreen.MarvelScreen
 import com.alejandro.superheropedia.ui.navigation.MyBottomNavigation
 import com.alejandro.superheropedia.ui.theme.SuperheropediaTheme
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
     override fun onCreate(savedInstanceState: Bundle?) {
