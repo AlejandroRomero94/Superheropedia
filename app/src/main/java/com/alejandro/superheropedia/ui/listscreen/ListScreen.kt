@@ -34,13 +34,16 @@ fun ListScreen(){
             verticalArrangement = Arrangement.spacedBy(space=8.dp)
         ) {
 
+//Aqui habrá que poner que el texto tiene que ser name y que el box de imagen es image
 
-
-
+//las variables tienen que venir del viewmodel
 
 
         }
 
 
     }
+
+
 }
+

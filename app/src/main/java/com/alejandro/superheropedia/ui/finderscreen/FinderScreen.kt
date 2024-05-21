@@ -88,17 +88,7 @@ fun FinderScreen() {
     }
 
 }
-/*
-val retrofit=getRetrofit()
- fun searchByName(query:String) {
-    CoroutineScope(Dispatchers.IO).launch{
-        val myReponse: SuperheroDataResponse =
-            retrofit.create(SuperheroApiService::class.java).getSuperheroes(query)
 
-        Log.i("alex", "funciona")
-    }
-}
-*/
 
 
 
