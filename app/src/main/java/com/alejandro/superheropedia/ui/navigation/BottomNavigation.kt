@@ -1,7 +1,10 @@
 package com.alejandro.superheropedia.ui.navigation
 
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
+import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
@@ -17,12 +20,13 @@ import com.alejandro.superheropedia.ui.marvelscreen.MarvelScreen
 
 
 @Composable
-fun MyBottomNavigation(navController: NavHostController) {
+fun MyBottomNavigation(navController: NavHostController, innerPadding:PaddingValues) {
     //var index by remember { mutableStateOf(0) }
     val findViewModel:FindViewModel= hiltViewModel()
     NavHost(
         navController = navController,
-        startDestination = NavigationBarScreen.Finder.route
+        startDestination = NavigationBarScreen.Finder.route,
+        modifier= Modifier.padding(innerPadding)
     ) {
 
         composable(route = NavigationBarScreen.Finder.route) {

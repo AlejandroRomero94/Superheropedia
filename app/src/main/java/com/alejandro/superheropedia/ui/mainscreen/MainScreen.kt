@@ -22,8 +22,8 @@ fun MainScreen() {
         topBar = { MyTopAppBar() },
         bottomBar = { NavigationBar(navController = navController)}
 
-        ) {
-        MyBottomNavigation(navController = navController)
+        ) {innerPadding->
+        MyBottomNavigation(navController = navController, innerPadding=innerPadding)
     }
 }
 
