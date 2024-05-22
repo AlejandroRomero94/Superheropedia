@@ -1,6 +1,8 @@
-package com.alejandro.superheropedia.core.di
+package com.alejandro.superheropedia.data.core.di
 
+import com.alejandro.superheropedia.data.RepositoryImpl
 import com.alejandro.superheropedia.data.network.SuperheroApiService
+import com.alejandro.superheropedia.domain.Repository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -12,7 +14,7 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-class NetworkModule {
+object NetworkModule {
 
 
     @Singleton
@@ -27,9 +29,13 @@ class NetworkModule {
 
 
     @Provides
-    @Singleton
     fun provideSuperheroApiService(retrofit:Retrofit):SuperheroApiService{
         return retrofit.create(SuperheroApiService::class.java)
+    }
+
+    @Provides
+    fun provideRepository(superheroApiService: SuperheroApiService):Repository{
+        return RepositoryImpl(superheroApiService)
     }
 
 }

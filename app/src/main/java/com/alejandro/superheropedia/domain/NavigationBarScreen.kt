@@ -11,6 +11,8 @@ sealed class NavigationBarScreen(
     val title: String,
     val icon: ImageVector
 ) {
+
+
     object Finder : NavigationBarScreen(
         route = "finder",
         title = "Finder",

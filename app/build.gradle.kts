@@ -60,6 +60,16 @@ dependencies {
     implementation("androidx.compose.runtime:runtime-livedata:1.2.1")
     //ComposeNavigation
     implementation("androidx.navigation:navigation-compose:2.7.0")
+    //Picasso
+    implementation("com.squareup.picasso:picasso:2.8")
+    //Coil
+    implementation("io.coil-kt:coil-compose:2.6.0")
+    //DataStore
+    implementation("androidx.datastore:datastore-preferences:1.0.0")
+//Dagger Hilt
+    implementation("com.google.dagger:hilt-android:2.48")
+    implementation("androidx.hilt:hilt-navigation-compose:1.2.0")
+    kapt ("com.google.dagger:hilt-android-compiler:2.48")
 
     //Resto
     implementation(libs.androidx.core.ktx)
@@ -79,8 +89,6 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 
-    implementation("com.google.dagger:hilt-android:2.48")
-    kapt ("com.google.dagger:hilt-android-compiler:2.48")
 
 
 }

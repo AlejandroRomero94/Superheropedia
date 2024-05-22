@@ -4,9 +4,7 @@ import com.alejandro.superheropedia.data.network.SuperheroRepository
 import com.alejandro.superheropedia.data.network.response.SuperheroItemResponse
 import javax.inject.Inject
 
-class SuperheroUseCase @Inject constructor(private val repository: SuperheroRepository){
-    suspend operator fun invoke(superheroName:String): List<SuperheroItemResponse> {
-        return repository.getSuperheroes(superheroName)
+class SuperheroUseCase @Inject constructor(private val repository:Repository){
+    suspend operator fun invoke(superheroName:String)=repository.getSuperheroes(superheroName)
     }
-}
 
