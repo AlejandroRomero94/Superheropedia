@@ -71,6 +71,9 @@ dependencies {
     implementation("androidx.hilt:hilt-navigation-compose:1.2.0")
     kapt ("com.google.dagger:hilt-android-compiler:2.48")
 
+    //Corutinas
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.0")
+
     //Resto
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)

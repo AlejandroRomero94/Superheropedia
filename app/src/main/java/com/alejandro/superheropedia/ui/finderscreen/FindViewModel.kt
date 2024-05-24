@@ -21,37 +21,52 @@ import javax.inject.Inject
 
 @HiltViewModel
 
-class FindViewModel @Inject constructor(private val superheroUseCase: SuperheroUseCase):ViewModel(){
+class FindViewModel @Inject constructor(private val superheroUseCase: SuperheroUseCase) :
+    ViewModel() {
+
+    private val _searchResults = MutableStateFlow<List<SuperheroModel>>(emptyList())
+    val searchResults: StateFlow<List<SuperheroModel>> get() = _searchResults
 
 
 
-    private val _searchResults =MutableLiveData<String>()
-    var searchResults:LiveData<String> = _searchResults
+   // private val _searchResults = MutableLiveData<List<SuperheroModel>?>()
+   // val searchResults: MutableLiveData<List<SuperheroModel>?> = _searchResults
+
+    //private val _searchResults = MutableLiveData<String>()
+    //var searchResults: LiveData<String> = _searchResults
 
 
     private val _state = MutableStateFlow<ListState>(ListState.Loading)
- //   val state: StateFlow<ListState> = _state
+    val state: StateFlow<ListState> = _state
 
     lateinit var superhero: SuperheroModel
 //     var mySuperhero=getSuperheroIdentity()
 
-     var list:List<ListState> = emptyList()
+    var list: List<ListState.Success> = emptyList()
 
 
-fun searchByName(query:String){
+    fun updateList(updateList: List<ListState.Success>) {
+        list = updateList
+    }
 
-    viewModelScope.launch {
-        val result= withContext(Dispatchers.IO){superheroUseCase(query)}
 
-        if (result!=null){
-            Log.i("alex",result.toString())
-            _state.value=ListState.Success(result)
-            superhero=result.first()
-        }else{
-            Log.i("alex", "no funciona")
+    fun searchByName(query: String) {
+
+        viewModelScope.launch {
+            val result = withContext(Dispatchers.IO) { superheroUseCase(query) }
+
+            if (result != null) {
+                Log.i("alex", result.toString())
+                _searchResults.value=result
+               // _state.value = ListState.Success(result)
+
+                //  superhero=result.first()
+                //  Log.i("alex",superhero.toString())
+            } else {
+                Log.i("alex", "no funciona")
+            }
         }
     }
-}
     /*
      private fun getSuperheroIdentity():Pair<String,String>?{
         return if(::superhero.isInitialized){

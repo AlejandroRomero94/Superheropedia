@@ -24,55 +24,7 @@ import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 
 
-@Composable
-fun ListScreen(listState: ListState, listViewModel: ListViewModel) {
 
 
-    Box(
-        Modifier
-            .background(Color.Magenta)
-            .fillMaxSize()
-    ) {
 
-        MyLazyColumn(listState, listViewModel) //Este parentesus es dificil tmbn
-
-    }
-
-
-}
-
-@Composable
-fun MyLazyColumn(listState: ListState, listViewModel: ListViewModel) {
-    LazyVerticalGrid(
-        columns = GridCells.Fixed(2),
-        contentPadding = PaddingValues(vertical = 4.dp, horizontal = 6.dp),
-        verticalArrangement = Arrangement.spacedBy(space = 8.dp)
-    ) {
-   /*     items() { superhero -> //Hay que resolver el parentesis del items, si es listState o que
-            ItemHero(listViewModel = listViewModel)
-        }*/
-
-    }
-}
-
-@Composable
-fun ItemHero(listViewModel: ListViewModel) {
-    Card(border = BorderStroke(2.dp, Color.Blue),
-        modifier = Modifier
-            .width(200.dp)
-            .clickable { /*onItemSelected()superhero*/ }) {
-        Column {
-            AsyncImage(
-                model = listViewModel.superhero.superheroImage,
-                contentDescription = "",
-                modifier = Modifier.fillMaxWidth(),
-                contentScale = ContentScale.Crop
-            )
-            Text(
-                text = listViewModel.superhero.superheroName,
-                Modifier.align(Alignment.CenterHorizontally)
-            )
-        }
-    }
-}
 

@@ -16,37 +16,4 @@ import javax.inject.Inject
 class ListViewModel @Inject constructor(private val superheroUseCase: SuperheroUseCase) :
     ViewModel() {
 
-
-//aqui tenemos que poner que la variable name va a ser el name que obtengamos del use case
-
-    private var _state = MutableStateFlow<ListState>(ListState.Loading)
-    val state: StateFlow<ListState> = _state
-
-    lateinit var superhero: SuperheroModel
-
-    fun getSuperheroes(superheroName: String) {
-        // superhero=superheroName
-        viewModelScope.launch {
-            _state.value = ListState.Loading
-            val result =
-                withContext(Dispatchers.IO) { superheroUseCase(superheroName) }
-            if (result != null) {
-                _state.value = ListState.Success(result)
-                superhero = result.first()
-            } else {
-                _state.value =
-                    ListState.Error("Ha ocurrido un error, inténtalo más tarde")
-            }
-        }
-
-
     }
-    fun getSuperheroIdentity():Pair<String,String>?{
-        return if(::superhero.isInitialized){
-            Pair(superhero.superheroName,superhero.superheroImage.url)
-        }else{
-            null
-        }
-    }
-    val mySuperhero=getSuperheroIdentity()
-}
