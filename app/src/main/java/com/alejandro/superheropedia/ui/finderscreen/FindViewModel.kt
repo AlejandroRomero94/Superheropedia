@@ -1,17 +1,11 @@
 package com.alejandro.superheropedia.ui.finderscreen
 
 import android.util.Log
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import androidx.lifecycle.viewmodel.compose.viewModel
-import com.alejandro.superheropedia.data.network.response.SuperheroItemResponse
 import com.alejandro.superheropedia.domain.SuperheroModel
-import com.alejandro.superheropedia.domain.SuperheroUseCase
-import com.alejandro.superheropedia.ui.listscreen.ListState
+import com.alejandro.superheropedia.domain.SuperheroesUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -21,7 +15,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 
-class FindViewModel @Inject constructor(private val superheroUseCase: SuperheroUseCase) :
+class FindViewModel @Inject constructor(private val superheroesUseCase: SuperheroesUseCase) :
     ViewModel() {
 
     private val _searchResults = MutableStateFlow<List<SuperheroModel>>(emptyList())
@@ -53,7 +47,7 @@ class FindViewModel @Inject constructor(private val superheroUseCase: SuperheroU
     fun searchByName(query: String) {
 
         viewModelScope.launch {
-            val result = withContext(Dispatchers.IO) { superheroUseCase(query) }
+            val result = withContext(Dispatchers.IO) { superheroesUseCase(query) }
 
             if (result != null) {
                 Log.i("alex", result.toString())

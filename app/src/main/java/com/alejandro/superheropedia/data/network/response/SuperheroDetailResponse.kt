@@ -1,5 +1,7 @@
 package com.alejandro.superheropedia.data.network.response
 
+import com.alejandro.superheropedia.domain.HeroModel
+import com.alejandro.superheropedia.domain.SuperheroModel
 import com.google.gson.annotations.SerializedName
 
 data class SuperheroDetailResponse(
@@ -8,6 +10,16 @@ data class SuperheroDetailResponse(
     @SerializedName("image") val image: SuperheroImageDetailResponse,
     @SerializedName("biography")val biography:Biography
 )
+{
+    fun toDomain(): HeroModel {
+        return HeroModel(
+            superheroName=name,
+            superheroStats=powerstats,
+            superheroImage=image,
+            superheroBiography=biography
+        )
+    }
+}
 
 data class PowerStatsResponse(
     @SerializedName("intelligence") val intelligence: String,

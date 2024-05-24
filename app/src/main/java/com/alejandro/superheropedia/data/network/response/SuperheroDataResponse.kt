@@ -17,8 +17,8 @@ data class SuperheroItemResponse(
 {
     fun toDomain():SuperheroModel{
         return SuperheroModel(
-            superheroName=superheroName,
-            superheroImage=superheroImage
+            superheroesName=superheroName,
+            superheroesImage=superheroImage
         )
     }
 }

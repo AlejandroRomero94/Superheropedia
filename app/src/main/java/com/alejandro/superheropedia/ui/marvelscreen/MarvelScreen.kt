@@ -16,7 +16,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 
 @Composable
-fun MarvelScreen(navController:NavHostController) {
+fun MarvelScreen(navController: NavHostController) {
 
 
 
@@ -29,7 +29,8 @@ fun MarvelScreen(navController:NavHostController) {
         Row(
             Modifier
                 .fillMaxWidth()
-                .align(Alignment.Center)) {
+                .align(Alignment.Center)
+        ) {
             Box(
                 modifier = Modifier
                     .weight(1f)
@@ -38,7 +39,7 @@ fun MarvelScreen(navController:NavHostController) {
                     .background(Color.Green),
                 contentAlignment = Alignment.Center
             ) {
-                Text(text="Heroes")
+                Text(text = "Heroes")
             }
 
 
@@ -46,17 +47,13 @@ fun MarvelScreen(navController:NavHostController) {
                 modifier = Modifier
                     .weight(1f)
                     .height(350.dp)
-                    .background(Color.Blue), contentAlignment = Alignment.Center
+                    .background(Color.Blue),
+                contentAlignment = Alignment.Center
             ) {
-                Text(text="Villains")
+                Text(text = "Villains")
             }
 
 
         }
     }
 }
-//@Composable
-//fun MarvelLayout(navController: NavHostController){
-
-
-//}
