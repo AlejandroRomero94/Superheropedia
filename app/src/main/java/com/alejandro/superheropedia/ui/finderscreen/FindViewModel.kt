@@ -4,7 +4,7 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.alejandro.superheropedia.domain.SuperheroModel
-import com.alejandro.superheropedia.domain.SuperheroesUseCase
+import com.alejandro.superheropedia.domain.usecase.SuperheroesUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow

@@ -13,12 +13,14 @@ import com.alejandro.superheropedia.ui.dcscreen.DcScreen
 import com.alejandro.superheropedia.ui.finderscreen.FindViewModel
 import com.alejandro.superheropedia.ui.finderscreen.FinderScreen
 import com.alejandro.superheropedia.ui.marvelscreen.MarvelScreen
+import com.alejandro.superheropedia.ui.marvelscreen.MarvelViewModel
 
 
 @Composable
 fun MyBottomNavigation(navController: NavHostController, innerPadding:PaddingValues) {
     //var index by remember { mutableStateOf(0) }
     val findViewModel:FindViewModel= hiltViewModel()
+    val marvelViewModel:MarvelViewModel= hiltViewModel()
     NavHost(
         navController = navController,
         startDestination = NavigationBarScreen.Finder.route,
@@ -29,7 +31,7 @@ fun MyBottomNavigation(navController: NavHostController, innerPadding:PaddingVal
             FinderScreen(findViewModel)
         }
         composable(route = NavigationBarScreen.Marvel.route) {
-            MarvelScreen(navController = navController)
+            MarvelScreen(marvelViewModel)
         }
         composable(route = NavigationBarScreen.Dc.route) {
             DcScreen(navController = navController)

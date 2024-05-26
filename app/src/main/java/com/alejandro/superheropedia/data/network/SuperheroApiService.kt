@@ -14,10 +14,14 @@ interface SuperheroApiService {
 //este valor está en SearchByName
 
 
+    @GET("/api/10227725099851761/{id}")
+    suspend fun getSuperheroFilteredList(@Path("id") superheroId:String): SuperheroDetailResponse
+}
 
 
 
-
+/*
     @GET("/api/10227725099851761/{id}")
    suspend fun getSuperheroDetail(@Path("id") superheroId:String): SuperheroDetailResponse
 }
+*/
