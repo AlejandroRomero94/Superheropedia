@@ -10,6 +10,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.alejandro.superheropedia.domain.NavigationBarScreen
 import com.alejandro.superheropedia.ui.dcscreen.DcScreen
+import com.alejandro.superheropedia.ui.dcscreen.DcViewModel
 import com.alejandro.superheropedia.ui.finderscreen.FindViewModel
 import com.alejandro.superheropedia.ui.finderscreen.FinderScreen
 import com.alejandro.superheropedia.ui.marvelscreen.MarvelScreen
@@ -21,6 +22,7 @@ fun MyBottomNavigation(navController: NavHostController, innerPadding:PaddingVal
     //var index by remember { mutableStateOf(0) }
     val findViewModel:FindViewModel= hiltViewModel()
     val marvelViewModel:MarvelViewModel= hiltViewModel()
+    val dcViewModel:DcViewModel= hiltViewModel()
     NavHost(
         navController = navController,
         startDestination = NavigationBarScreen.Finder.route,
@@ -34,7 +36,7 @@ fun MyBottomNavigation(navController: NavHostController, innerPadding:PaddingVal
             MarvelScreen(marvelViewModel)
         }
         composable(route = NavigationBarScreen.Dc.route) {
-            DcScreen(navController = navController)
+            DcScreen(dcViewModel)
         }
 
     }

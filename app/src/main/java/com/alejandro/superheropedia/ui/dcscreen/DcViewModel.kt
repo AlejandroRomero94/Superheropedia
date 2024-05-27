@@ -1,4 +1,4 @@
-package com.alejandro.superheropedia.ui.marvelscreen
+package com.alejandro.superheropedia.ui.dcscreen
 
 import android.util.Log
 import androidx.lifecycle.ViewModel
@@ -13,18 +13,20 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
-@HiltViewModel //getAllHeroesByIdUseCase:GetAllHeroesByIdUseCase
-class MarvelViewModel @Inject constructor(private val getAllHeroesByIdUseCase: GetAllHeroesByIdUseCase) :
-    ViewModel() {
-    private val _marvelHeroes = MutableStateFlow<List<HeroModel>>(emptyList())
-    val marvelHeroes: StateFlow<List<HeroModel>> get() = _marvelHeroes
+
+@HiltViewModel
+class DcViewModel @Inject constructor(private val getAllHeroesByIdUseCase: GetAllHeroesByIdUseCase):
+    ViewModel(){
+
+    private val _dcHeroes = MutableStateFlow<List<HeroModel>>(emptyList())
+    val dcHeroes: StateFlow<List<HeroModel>> get() = _dcHeroes
 
     private val _showButtons = MutableStateFlow(true)
     val showButtons: StateFlow<Boolean> get() = _showButtons
 
 
 
-    fun getMarvelGoodHeroes() {
+    fun getDcHeroes() {
         viewModelScope.launch {
 
             val response =
@@ -32,24 +34,24 @@ class MarvelViewModel @Inject constructor(private val getAllHeroesByIdUseCase: G
 
             if (response.isNotEmpty()) {
                 val filteredHeroes = response.filter {
-                    it.superheroBiography.publisher == "Marvel Comics" &&
+                    it.superheroBiography.publisher == "DC Comics" &&
                             it.superheroBiography.alignment == "good"
                 }
-                _marvelHeroes.value = filteredHeroes
+                _dcHeroes.value = filteredHeroes
                 Log.i(
-                    "marvelviewmodel",
+                    "dcviewmodel",
                     "Filtered${filteredHeroes.size} heroes"
                 )
                 Log.i("alex", filteredHeroes.toString())
                 _showButtons.value = false
 
             } else {
-                Log.i("MarvelViewModel", "no funciona")
+                Log.i("DcViewModel", "no funciona")
             }
 
 
         }}
-    fun getMarvelVillains() {
+    fun getDcVillains() {
         viewModelScope.launch {
 
             val response =
@@ -57,30 +59,30 @@ class MarvelViewModel @Inject constructor(private val getAllHeroesByIdUseCase: G
 
             if (response.isNotEmpty()) {
                 val filteredHeroes = response.filter {
-                    it.superheroBiography.publisher == "Marvel Comics" &&
+                    it.superheroBiography.publisher == "DC Comics" &&
                             it.superheroBiography.alignment == "bad"
                 }
-                _marvelHeroes.value = filteredHeroes
+                _dcHeroes.value = filteredHeroes
                 Log.i(
-                    "marvelviewmodel",
+                    "dcviewmodel",
                     "Filtered${filteredHeroes.size} heroes"
                 )
                 Log.i("alex", filteredHeroes.toString())
                 _showButtons.value = false
 
             } else {
-                Log.i("MarvelViewModel", "no funciona")
+                Log.i("DcViewModel", "no funciona")
             }
 
 
         }}
 
 
-        fun reset() {
-            _marvelHeroes.value= emptyList()
-            _showButtons.value = true
+    fun reset() {
+        _dcHeroes.value= emptyList()
+        _showButtons.value = true
 
-        }
+    }
 
 
 }

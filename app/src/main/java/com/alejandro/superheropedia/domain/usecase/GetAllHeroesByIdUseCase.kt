@@ -12,7 +12,6 @@ class GetAllHeroesByIdUseCase @Inject constructor(private val repository: Reposi
     suspend operator fun invoke():MutableList<HeroModel>{
 
         val superheroes= mutableListOf<HeroModel>()
-        val deferredList=(1..731).map{id ->}
         for (id in 1..731){
             try {
                 val response = repository.getFilteredSuperheroes(id.toString())
