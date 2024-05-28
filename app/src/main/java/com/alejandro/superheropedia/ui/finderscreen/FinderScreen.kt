@@ -2,6 +2,7 @@ package com.alejandro.superheropedia.ui.finderscreen
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -37,12 +38,14 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavController
+import androidx.navigation.NavHostController
 import coil.compose.rememberAsyncImagePainter
 import com.alejandro.superheropedia.domain.SuperheroModel
 
 @Composable
 
-fun FinderScreen(findViewModel: FindViewModel) {
+fun FinderScreen(findViewModel: FindViewModel, navController: NavHostController) {
 
     Column(modifier = Modifier.fillMaxSize()) {
         Box(
@@ -64,7 +67,7 @@ fun FinderScreen(findViewModel: FindViewModel) {
                 .weight(5f)
         ) {
             // SuperLazyColumn(findViewModel)
-            SuperheroList(findViewModel)
+            SuperheroList(findViewModel, navController)
         }
     }
 
@@ -72,22 +75,23 @@ fun FinderScreen(findViewModel: FindViewModel) {
 }
 
 @Composable
-fun SuperheroList(findViewModel: FindViewModel = viewModel()) {
+fun SuperheroList(findViewModel: FindViewModel = viewModel(), navController: NavHostController) {
     val searchResults by findViewModel.searchResults.collectAsState()
 
     LazyColumn {
         items(searchResults) { superhero ->
-            SuperheroItem(superhero)
+            SuperheroItem(superhero, navController)
         }
     }
 }
 
 @Composable
-fun SuperheroItem(superhero: SuperheroModel) {
+fun SuperheroItem(superhero: SuperheroModel, navController: NavHostController) {
     Card(
         modifier = Modifier
             .padding(horizontal = 8.dp, vertical = 8.dp)
-            .fillMaxWidth(),
+            .fillMaxWidth()
+            .clickable{navController.navigate("Detail")},
         elevation = CardDefaults.cardElevation(2.dp),
         colors = CardDefaults.cardColors(containerColor = Color.White),
         shape = RoundedCornerShape(corner = CornerSize(16.dp))
