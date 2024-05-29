@@ -13,7 +13,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
-@HiltViewModel //getAllHeroesByIdUseCase:GetAllHeroesByIdUseCase
+@HiltViewModel
 class MarvelViewModel @Inject constructor(private val getAllHeroesByIdUseCase: GetAllHeroesByIdUseCase) :
     ViewModel() {
     private val _marvelHeroes = MutableStateFlow<List<HeroModel>>(emptyList())
@@ -76,11 +76,7 @@ class MarvelViewModel @Inject constructor(private val getAllHeroesByIdUseCase: G
         }}
 
 
-        fun reset() {
-            _marvelHeroes.value= emptyList()
-            _showButtons.value = true
 
-        }
 
 
 }

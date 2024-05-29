@@ -1,5 +1,7 @@
 package com.alejandro.superheropedia.ui.finderscreen
 
+import android.content.Context
+import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -29,23 +31,25 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.CreationExtras
 import androidx.lifecycle.viewmodel.compose.viewModel
-import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import coil.compose.rememberAsyncImagePainter
 import com.alejandro.superheropedia.domain.SuperheroModel
 
 @Composable
 
-fun FinderScreen(findViewModel: FindViewModel, navController: NavHostController) {
+fun FinderScreen(findViewModel: FindViewModel, navController: NavHostController, onItemSelected:(String)->Unit) {
 
     Column(modifier = Modifier.fillMaxSize()) {
         Box(
@@ -57,17 +61,16 @@ fun FinderScreen(findViewModel: FindViewModel, navController: NavHostController)
                 .background(Color.Black),
             contentAlignment = Alignment.Center
         ) {
-            HeroSearchBar(findViewModel) {}
+            HeroSearchBar(findViewModel){}
 
         }
         Box(
             modifier = Modifier
                 .fillMaxSize()
-
+                .background(Color.Black)
                 .weight(5f)
         ) {
-            // SuperLazyColumn(findViewModel)
-            SuperheroList(findViewModel, navController)
+            SuperheroList(findViewModel, navController,onItemSelected)
         }
     }
 
@@ -75,23 +78,29 @@ fun FinderScreen(findViewModel: FindViewModel, navController: NavHostController)
 }
 
 @Composable
-fun SuperheroList(findViewModel: FindViewModel = viewModel(), navController: NavHostController) {
+fun SuperheroList(findViewModel: FindViewModel = viewModel(), navController: NavHostController,onItemSelected:(String)->Unit ) {
     val searchResults by findViewModel.searchResults.collectAsState()
 
-    LazyColumn {
+        LazyColumn {
         items(searchResults) { superhero ->
-            SuperheroItem(superhero, navController)
+            SuperheroItem(superhero, navController, onItemSelected)
         }
     }
-}
+
+    }
+
+
 
 @Composable
-fun SuperheroItem(superhero: SuperheroModel, navController: NavHostController) {
+fun SuperheroItem(superhero: SuperheroModel, navController: NavHostController, onItemSelected:(String)->Unit) {
     Card(
         modifier = Modifier
             .padding(horizontal = 8.dp, vertical = 8.dp)
             .fillMaxWidth()
-            .clickable{navController.navigate("Detail")},
+            .clickable {
+                onItemSelected(superhero.superheroesId)
+                navController.navigate("Detail/${superhero.superheroesId}")
+            },
         elevation = CardDefaults.cardElevation(2.dp),
         colors = CardDefaults.cardColors(containerColor = Color.White),
         shape = RoundedCornerShape(corner = CornerSize(16.dp))
@@ -114,10 +123,6 @@ fun SuperheroItem(superhero: SuperheroModel, navController: NavHostController) {
     }
 }
 
-
-
-//findViewModel.searchResults.isInitialized
-
 @Composable
 fun HeroSearchBar(
     findViewModel: FindViewModel,
@@ -130,6 +135,7 @@ fun HeroSearchBar(
 
     TextField(
         value = text,
+        singleLine = true,
         onValueChange = { newText ->
             text = newText
             onTextChanged(newText)
@@ -137,7 +143,8 @@ fun HeroSearchBar(
         label = { Text(text = "find") },
         modifier = Modifier
             .fillMaxWidth()
-            .padding(8.dp),
+            .padding(8.dp)
+        ,
         colors = TextFieldDefaults.colors(
             unfocusedContainerColor = Color.White,
             focusedContainerColor = Color.White,
@@ -148,11 +155,15 @@ fun HeroSearchBar(
             findViewModel.searchByName(
                 text
             )
+
         })
 
     )
 
+
+
 }
+
 
 
 

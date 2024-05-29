@@ -6,8 +6,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.navArgument
 import com.alejandro.superheropedia.domain.NavigationBarScreen
 import com.alejandro.superheropedia.ui.dcscreen.DcScreen
 import com.alejandro.superheropedia.ui.dcscreen.DcViewModel
@@ -20,20 +22,31 @@ import com.alejandro.superheropedia.ui.marvelscreen.MarvelViewModel
 
 
 @Composable
-fun MyBottomNavigation(navController: NavHostController, innerPadding:PaddingValues) {
-    //var index by remember { mutableStateOf(0) }
-    val findViewModel:FindViewModel= hiltViewModel()
-    val marvelViewModel:MarvelViewModel= hiltViewModel()
-    val dcViewModel:DcViewModel= hiltViewModel()
-    val detailViewModel:DetailViewModel= hiltViewModel()
+fun MyBottomNavigation(
+    navController: NavHostController,
+    innerPadding: PaddingValues
+) {
+
+    val findViewModel: FindViewModel = hiltViewModel()
+    val marvelViewModel: MarvelViewModel = hiltViewModel()
+    val dcViewModel: DcViewModel = hiltViewModel()
+    val detailViewModel: DetailViewModel = hiltViewModel()
+
     NavHost(
         navController = navController,
         startDestination = NavigationBarScreen.Finder.route,
-        modifier= Modifier.padding(innerPadding)
+        modifier = Modifier.padding(innerPadding)
     ) {
 
         composable(route = NavigationBarScreen.Finder.route) {
-            FinderScreen(findViewModel, navController=navController)
+
+            FinderScreen(
+                findViewModel,
+                navController = navController
+            ) { superheroId ->
+                detailViewModel.loadSuperheroDetails(superheroId)
+                navController.navigate("Detail/$superheroId")
+            }
         }
         composable(route = NavigationBarScreen.Marvel.route) {
             MarvelScreen(marvelViewModel)
@@ -41,8 +54,18 @@ fun MyBottomNavigation(navController: NavHostController, innerPadding:PaddingVal
         composable(route = NavigationBarScreen.Dc.route) {
             DcScreen(dcViewModel)
         }
-        composable("Detail"){ DetailScreen(detailViewModel) }
-
+        composable(
+            "Detail/{superheroId}",
+            arguments = listOf(navArgument("superheroId") {
+                type = NavType.StringType
+            })
+        ) { navBackStackEntry ->
+            val superheroId =
+                navBackStackEntry.arguments?.getString("superheroId")
+            if (superheroId != null) {
+                DetailScreen(detailViewModel, superheroId)
+            }
+        }
     }
 }
 

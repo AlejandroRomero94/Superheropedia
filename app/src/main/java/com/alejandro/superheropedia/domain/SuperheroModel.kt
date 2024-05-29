@@ -9,6 +9,7 @@ import com.alejandro.superheropedia.data.network.response.SuperheroImageResponse
 data class SuperheroModel(
     var superheroesName:String,
     var superheroesImage: SuperheroImageResponse,
-    var superheroBiography:BiographyResponse
+    var superheroBiography:BiographyResponse,
+    var superheroesId:String
 
     )

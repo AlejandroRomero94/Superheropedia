@@ -18,12 +18,11 @@ class RepositoryImpl @Inject constructor(private val superheroApiService: Superh
         return null
     }
 
-
     //getFilteredSuperheroes for marvel and dc screens
     override suspend fun getFilteredSuperheroes(superheroId: String): HeroModel? {
         return runCatching {
             val response =
-                superheroApiService.getSuperheroFilteredList(superheroId)
+                superheroApiService.getSuperheroDetail(superheroId)
             Log.d("RepositoryImpl", "Response for id $superheroId:$response")
             response.toDomain()
         }
@@ -36,14 +35,10 @@ class RepositoryImpl @Inject constructor(private val superheroApiService: Superh
             .getOrNull()
     }
 
-
-    /*
         override suspend fun getSuperheroDetail(superheroId:String):HeroModel?{
             runCatching { superheroApiService.getSuperheroDetail(superheroId) }
                 .onSuccess { response ->return response.toDomain()}
-                .onFailure { Log.i("alex", "Ha ocurrido un error") }
+                .onFailure { Log.i("SuperheroImpl", "Ha ocurrido un error") }
                 return null
         }
-        */
-
 }

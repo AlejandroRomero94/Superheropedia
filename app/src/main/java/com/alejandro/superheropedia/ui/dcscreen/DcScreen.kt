@@ -2,11 +2,8 @@ package com.alejandro.superheropedia.ui.dcscreen
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -22,7 +19,6 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -34,7 +30,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.NavHostController
 import coil.compose.rememberAsyncImagePainter
 import com.alejandro.superheropedia.domain.HeroModel
 
@@ -75,12 +70,12 @@ fun ButtonScreen(
         verticalArrangement = Arrangement.Center,
         modifier = Modifier
             .fillMaxSize()
-            .background(Color.Yellow)
+            .background(Color.Black)
     ) {
         Button(
             onClick = onHeroesButtonClick,
             modifier = Modifier
-                .background(Color.Red)
+                .background(Color.Black)
                 .height(200.dp)
                 .fillMaxWidth()
                 .padding(16.dp)
@@ -91,12 +86,12 @@ fun ButtonScreen(
         Button(
             onClick = onVillainsButtonClick,
             modifier = Modifier
-                .background(Color.Green)
+                .background(Color.Black)
                 .height(200.dp)
                 .fillMaxWidth()
                 .padding(16.dp)
         ) {
-            Text(text = "Villains", fontSize=30.sp)
+            Text(text = "DC Villains", fontSize=30.sp)
         }
     }
 }

@@ -43,6 +43,7 @@ android {
     }
     composeOptions {
         kotlinCompilerExtensionVersion = "1.5.1"
+
     }
     packaging {
         resources {
@@ -73,6 +74,8 @@ dependencies {
 
     //Corutinas
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.0")
+
+
 
     //Resto
     implementation(libs.androidx.core.ktx)

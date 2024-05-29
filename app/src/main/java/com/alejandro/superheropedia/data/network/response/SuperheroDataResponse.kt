@@ -20,7 +20,8 @@ data class SuperheroItemResponse(
         return SuperheroModel(
             superheroesName=superheroName,
             superheroesImage=superheroImage,
-            superheroBiography=superheroBiography
+            superheroBiography=superheroBiography,
+            superheroesId=superheroId
         )
     }
 }

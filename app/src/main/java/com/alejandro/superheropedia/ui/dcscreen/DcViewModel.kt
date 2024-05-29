@@ -78,11 +78,4 @@ class DcViewModel @Inject constructor(private val getAllHeroesByIdUseCase: GetAl
         }}
 
 
-    fun reset() {
-        _dcHeroes.value= emptyList()
-        _showButtons.value = true
-
-    }
-
-
 }
