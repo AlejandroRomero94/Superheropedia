@@ -3,6 +3,7 @@ package com.alejandro.superheropedia.ui.marvelscreen
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.alejandro.superheropedia.domain.FilterModel
 import com.alejandro.superheropedia.domain.HeroModel
 import com.alejandro.superheropedia.domain.usecase.GetAllHeroesByIdUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -16,8 +17,8 @@ import javax.inject.Inject
 @HiltViewModel
 class MarvelViewModel @Inject constructor(private val getAllHeroesByIdUseCase: GetAllHeroesByIdUseCase) :
     ViewModel() {
-    private val _marvelHeroes = MutableStateFlow<List<HeroModel>>(emptyList())
-    val marvelHeroes: StateFlow<List<HeroModel>> get() = _marvelHeroes
+    private val _marvelHeroes = MutableStateFlow<List<FilterModel>>(emptyList())
+    val marvelHeroes: StateFlow<List<FilterModel>> get() = _marvelHeroes
 
     private val _showButtons = MutableStateFlow(true)
     val showButtons: StateFlow<Boolean> get() = _showButtons

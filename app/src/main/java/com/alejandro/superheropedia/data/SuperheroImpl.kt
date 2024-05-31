@@ -2,6 +2,7 @@ package com.alejandro.superheropedia.data
 
 import android.util.Log
 import com.alejandro.superheropedia.data.network.SuperheroApiService
+import com.alejandro.superheropedia.domain.FilterModel
 import com.alejandro.superheropedia.domain.HeroModel
 import com.alejandro.superheropedia.domain.Repository
 import com.alejandro.superheropedia.domain.SuperheroModel
@@ -19,12 +20,13 @@ class RepositoryImpl @Inject constructor(private val superheroApiService: Superh
     }
 
     //getFilteredSuperheroes for marvel and dc screens
-    override suspend fun getFilteredSuperheroes(superheroId: String): HeroModel? {
+    override suspend fun getFilteredSuperheroes(superheroId: String): FilterModel? {
         return runCatching {
             val response =
-                superheroApiService.getSuperheroDetail(superheroId)
+                superheroApiService.getSuperheroFiltered(superheroId)
             Log.d("RepositoryImpl", "Response for id $superheroId:$response")
-            response.toDomain()
+           // response.toDomain()
+            FilterModel(superheroName = response.name, superheroImage = response.image, superheroBiography = response.biography )
         }
             .onFailure { e_ ->
                 Log.e(

@@ -1,5 +1,6 @@
 package com.alejandro.superheropedia.ui.finderscreen
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.widget.Toast
 import androidx.compose.foundation.Image
@@ -77,6 +78,7 @@ fun FinderScreen(findViewModel: FindViewModel, navController: NavHostController,
 
 }
 
+@SuppressLint("SuspiciousIndentation")
 @Composable
 fun SuperheroList(findViewModel: FindViewModel, navController: NavHostController,onItemSelected:(String)->Unit ) {
     val searchResults by findViewModel.searchResults.collectAsState()

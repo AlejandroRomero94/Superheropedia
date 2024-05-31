@@ -31,6 +31,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.rememberAsyncImagePainter
+import com.alejandro.superheropedia.domain.FilterModel
 import com.alejandro.superheropedia.domain.HeroModel
 
 @Composable
@@ -98,7 +99,7 @@ fun ButtonScreen(
 
 
 @Composable
-fun DCSuperheroItem(hero: HeroModel) {
+fun DCSuperheroItem(hero: FilterModel) {
     Card(
         modifier = Modifier
             .padding(horizontal = 8.dp, vertical = 8.dp)

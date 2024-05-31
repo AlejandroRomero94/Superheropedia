@@ -3,15 +3,16 @@ package com.alejandro.superheropedia.domain.usecase
 import android.util.Log
 import android.widget.Toast
 import androidx.compose.material3.Text
+import com.alejandro.superheropedia.domain.FilterModel
 import com.alejandro.superheropedia.domain.HeroModel
 import com.alejandro.superheropedia.domain.Repository
 import com.alejandro.superheropedia.domain.SuperheroModel
 import javax.inject.Inject
 
 class GetAllHeroesByIdUseCase @Inject constructor(private val repository: Repository){
-    suspend operator fun invoke():MutableList<HeroModel>{
+    suspend operator fun invoke():MutableList<FilterModel>{
 
-        val superheroes= mutableListOf<HeroModel>()
+        val superheroes= mutableListOf<FilterModel>()
         for (id in 1..731){
             try {
                 val response = repository.getFilteredSuperheroes(id.toString())

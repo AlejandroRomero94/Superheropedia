@@ -3,6 +3,7 @@ package com.alejandro.superheropedia.ui.dcscreen
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.alejandro.superheropedia.domain.FilterModel
 import com.alejandro.superheropedia.domain.HeroModel
 import com.alejandro.superheropedia.domain.usecase.GetAllHeroesByIdUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -18,8 +19,8 @@ import javax.inject.Inject
 class DcViewModel @Inject constructor(private val getAllHeroesByIdUseCase: GetAllHeroesByIdUseCase):
     ViewModel(){
 
-    private val _dcHeroes = MutableStateFlow<List<HeroModel>>(emptyList())
-    val dcHeroes: StateFlow<List<HeroModel>> get() = _dcHeroes
+    private val _dcHeroes = MutableStateFlow<List<FilterModel>>(emptyList())
+    val dcHeroes: StateFlow<List<FilterModel>> get() = _dcHeroes
 
     private val _showButtons = MutableStateFlow(true)
     val showButtons: StateFlow<Boolean> get() = _showButtons
