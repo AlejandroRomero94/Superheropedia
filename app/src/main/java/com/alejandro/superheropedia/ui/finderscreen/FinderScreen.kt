@@ -78,7 +78,7 @@ fun FinderScreen(findViewModel: FindViewModel, navController: NavHostController,
 }
 
 @Composable
-fun SuperheroList(findViewModel: FindViewModel = viewModel(), navController: NavHostController,onItemSelected:(String)->Unit ) {
+fun SuperheroList(findViewModel: FindViewModel, navController: NavHostController,onItemSelected:(String)->Unit ) {
     val searchResults by findViewModel.searchResults.collectAsState()
 
         LazyColumn {
