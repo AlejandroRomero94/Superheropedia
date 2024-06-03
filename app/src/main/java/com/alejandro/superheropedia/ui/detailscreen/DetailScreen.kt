@@ -25,6 +25,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
@@ -32,6 +33,7 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.rememberAsyncImagePainter
+import com.alejandro.superheropedia.R
 
 
 @Composable
@@ -92,7 +94,7 @@ fun DetailScreen(
                             Text(
                                 buildAnnotatedString {
                                     withStyle(style = SpanStyle(fontWeight = FontWeight.Bold)) {
-                                        append("Full name: ")
+                                        append(stringResource(id = R.string.full_name))
                                     }
                                     append(superhero.superheroBiography.fullName)
 
@@ -103,7 +105,7 @@ fun DetailScreen(
                             Text(
                                 buildAnnotatedString {
                                     withStyle(style = SpanStyle(fontWeight = FontWeight.Bold)) {
-                                        append("Aliases: ")
+                                        append(stringResource(id = R.string.aliases))
                                     }
                                     append(
                                         superhero.superheroBiography.aliases.joinToString(
@@ -117,7 +119,7 @@ fun DetailScreen(
                             Text(
                                 buildAnnotatedString {
                                     withStyle(style = SpanStyle(fontWeight = FontWeight.Bold)) {
-                                        append("Alter egos: ")
+                                        append(stringResource(id = R.string.alter_egos))
                                     }
 
                                     append(superhero.superheroBiography.alterEgos)
@@ -129,7 +131,7 @@ fun DetailScreen(
                             Text(
                                 buildAnnotatedString {
                                     withStyle(style = SpanStyle(fontWeight = FontWeight.Bold)) {
-                                        append("Birth place: ")
+                                        append(stringResource(id = R.string.birth))
                                     }
                                     append(superhero.superheroBiography.placeOfBirth)
 
@@ -140,7 +142,7 @@ fun DetailScreen(
                             Text(
                                 buildAnnotatedString {
                                     withStyle(style = SpanStyle(fontWeight = FontWeight.Bold)) {
-                                        append("First Appearance: ")
+                                        append(stringResource(id = R.string.first_appearance))
                                     }
                                     append(superhero.superheroBiography.firstAppearance)
 
@@ -151,7 +153,7 @@ fun DetailScreen(
                             Text(
                                 buildAnnotatedString {
                                     withStyle(style = SpanStyle(fontWeight = FontWeight.Bold)) {
-                                        append("Alignment: ")
+                                        append(stringResource(id = R.string.alignement))
                                     }
                                     append(superhero.superheroBiography.alignment)
 
@@ -162,7 +164,7 @@ fun DetailScreen(
                             Text(
                                 buildAnnotatedString {
                                     withStyle(style = SpanStyle(fontWeight = FontWeight.Bold)) {
-                                        append("Publisher: ")
+                                        append(stringResource(id = R.string.publisher))
                                     }
                                     append(superhero.superheroBiography.publisher)
 
@@ -172,13 +174,13 @@ fun DetailScreen(
                       item  { Spacer(modifier = Modifier.height(16.dp)) }
 
                         item {
-                            Text(text = "Physical description", fontWeight = FontWeight.ExtraBold)
+                            Text(text = stringResource(id = R.string.physical_description), fontWeight = FontWeight.ExtraBold)
                         }
                         item {
                             Text(
                                 buildAnnotatedString {
                                     withStyle(style = SpanStyle(fontWeight = FontWeight.Bold)) {
-                                        append("Gender: ")
+                                        append(stringResource(id = R.string.gender))
                                     }
                                     append(superhero.superheroAppearance.gender)
                                 }
@@ -188,7 +190,7 @@ fun DetailScreen(
                             Text(
                                 buildAnnotatedString {
                                     withStyle(style = SpanStyle(fontWeight = FontWeight.Bold)) {
-                                        append("Race: ")
+                                        append(stringResource(id = R.string.race))
                                     }
                                     append(superhero.superheroAppearance.race)
                                 }
@@ -198,7 +200,7 @@ fun DetailScreen(
                             Text(
                                 buildAnnotatedString {
                                     withStyle(style = SpanStyle(fontWeight = FontWeight.Bold)) {
-                                        append("Height: ")
+                                        append(stringResource(id = R.string.height))
                                     }
                                     append(
                                         superhero.superheroAppearance.height.joinToString(
@@ -212,7 +214,7 @@ fun DetailScreen(
                             Text(
                                 buildAnnotatedString {
                                     withStyle(style = SpanStyle(fontWeight = FontWeight.Bold)) {
-                                        append("Weight: ")
+                                        append(stringResource(id = R.string.weight))
                                     }
                                     append(
                                         superhero.superheroAppearance.weight.joinToString(
@@ -226,7 +228,7 @@ fun DetailScreen(
                             Text(
                                 buildAnnotatedString {
                                     withStyle(style = SpanStyle(fontWeight = FontWeight.Bold)) {
-                                        append("Eye color: ")
+                                        append(stringResource(id = R.string.eye_color))
                                     }
                                     append(superhero.superheroAppearance.eyeColor)
                                 }
@@ -236,7 +238,7 @@ fun DetailScreen(
                             Text(
                                 buildAnnotatedString {
                                     withStyle(style = SpanStyle(fontWeight = FontWeight.Bold)) {
-                                        append("Hair color: ")
+                                        append(stringResource(id = R.string.hair_color))
                                     }
                                     append(superhero.superheroAppearance.hairColor)
                                 }
@@ -246,13 +248,13 @@ fun DetailScreen(
                             Spacer(modifier = Modifier.height(8.dp))
                         }
                         item {
-                            Text(text = "Occupation and base", fontWeight = FontWeight.ExtraBold)
+                            Text(text = stringResource(id = R.string.occupation_base), fontWeight = FontWeight.ExtraBold)
                         }
                         item {
                             Text(
                                 buildAnnotatedString {
                                     withStyle(style = SpanStyle(fontWeight = FontWeight.Bold)) {
-                                        append("Occupation: ")
+                                        append(stringResource(id = R.string.occupation))
                                     }
                                     append(superhero.superheroWork.occupation)
                                 }
@@ -262,7 +264,7 @@ fun DetailScreen(
                             Text(
                                 buildAnnotatedString {
                                     withStyle(style = SpanStyle(fontWeight = FontWeight.Bold)) {
-                                        append("Base: ")
+                                        append(stringResource(id = R.string.base))
                                     }
                                     append(superhero.superheroWork.base)
                                 }
@@ -272,13 +274,13 @@ fun DetailScreen(
                             Spacer(modifier = Modifier.height(8.dp))
                         }
                         item {
-                            Text(text = "Known affiliations", fontWeight = FontWeight.ExtraBold)
+                            Text(text = stringResource(id = R.string.affiliations), fontWeight = FontWeight.ExtraBold)
                         }
                         item {
                             Text(
                                 buildAnnotatedString {
                                     withStyle(style = SpanStyle(fontWeight = FontWeight.Bold)) {
-                                        append("Groups: ")
+                                        append(stringResource(id = R.string.groups))
                                     }
                                     append(superhero.superheroConnections.groupAffiliation)
                                 }
@@ -288,7 +290,7 @@ fun DetailScreen(
                             Text(
                                 buildAnnotatedString {
                                     withStyle(style = SpanStyle(fontWeight = FontWeight.Bold)) {
-                                        append("Relatives: ")
+                                        append(stringResource(id = R.string.relatives))
                                     }
                                     append(superhero.superheroConnections.relatives)
                                 }

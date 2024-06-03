@@ -40,12 +40,14 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.CreationExtras
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import coil.compose.rememberAsyncImagePainter
+import com.alejandro.superheropedia.R
 import com.alejandro.superheropedia.domain.SuperheroModel
 
 @Composable
@@ -142,7 +144,7 @@ fun HeroSearchBar(
             text = newText
             onTextChanged(newText)
         },
-        label = { Text(text = "find") },
+        label = { Text(text = stringResource(id = R.string.find)) },
         modifier = Modifier
             .fillMaxWidth()
             .padding(8.dp)

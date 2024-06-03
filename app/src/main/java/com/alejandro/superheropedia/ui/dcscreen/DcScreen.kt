@@ -31,6 +31,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.rememberAsyncImagePainter
+import com.alejandro.superheropedia.R
 import com.alejandro.superheropedia.domain.FilterModel
 import com.alejandro.superheropedia.domain.HeroModel
 
@@ -81,7 +82,7 @@ fun ButtonScreen(
                 .fillMaxWidth()
                 .padding(16.dp)
         ) {
-            Text(text = "DC Heroes", fontSize=30.sp)
+            Text(text = R.string.dc_heroes.toString(), fontSize=30.sp)
         }
 
         Button(
@@ -92,7 +93,7 @@ fun ButtonScreen(
                 .fillMaxWidth()
                 .padding(16.dp)
         ) {
-            Text(text = "DC Villains", fontSize=30.sp)
+            Text(text =  R.string.dc_villains.toString(), fontSize=30.sp)
         }
     }
 }

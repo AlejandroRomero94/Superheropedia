@@ -3,6 +3,7 @@ package com.alejandro.superheropedia.ui.dcscreen
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.alejandro.superheropedia.R
 import com.alejandro.superheropedia.domain.FilterModel
 import com.alejandro.superheropedia.domain.HeroModel
 import com.alejandro.superheropedia.domain.usecase.GetAllHeroesByIdUseCase
@@ -40,14 +41,14 @@ class DcViewModel @Inject constructor(private val getAllHeroesByIdUseCase: GetAl
                 }
                 _dcHeroes.value = filteredHeroes
                 Log.i(
-                    "dcviewmodel",
+                    "DcViewModel",
                     "Filtered${filteredHeroes.size} heroes"
                 )
-                Log.i("alex", filteredHeroes.toString())
+                Log.i("DcViewModel", filteredHeroes.toString())
                 _showButtons.value = false
 
             } else {
-                Log.i("DcViewModel", "no funciona")
+                Log.i("DcViewModel", R.string.no_values.toString())
             }
 
 
@@ -65,14 +66,14 @@ class DcViewModel @Inject constructor(private val getAllHeroesByIdUseCase: GetAl
                 }
                 _dcHeroes.value = filteredHeroes
                 Log.i(
-                    "dcviewmodel",
+                    "DcViewModel",
                     "Filtered${filteredHeroes.size} heroes"
                 )
                 Log.i("alex", filteredHeroes.toString())
                 _showButtons.value = false
 
             } else {
-                Log.i("DcViewModel", "no funciona")
+                Log.i("DcViewModel", R.string.no_values.toString())
             }
 
 

@@ -1,3 +1,43 @@
 <resources>
     <string name="app_name">Superheropedia</string>
+
+    <!--General -->
+    <string name="error_message">A failure occurred</string>
+    <string name="no_values">Call did not work</string>
+    <!--DC Screen -->
+    <string name="dc_heroes">DC Heroes</string>
+    <string name="dc_villains">DC Villains</string>
+    <!--DC Screen -->
+    <string name="marvel_heroes">Marvel Heroes</string>
+    <string name="marvel_villains">Marvel Villains</string>
+    <!--Navigation Bar Screen -->
+    <string name="finder">Finder</string>
+    <string name="marvel">Marvel</string>
+    <string name="dc">Dc</string>
+
+    <!--Detail Screen -->
+    <string name="full_name">Full name: </string>
+    <string name="aliases">Aliases: </string>
+    <string name="alter_egos">Alter egos: </string>
+    <string name="birth">Birth: </string>
+    <string name="first_appearance">"First Appearance: "</string>
+    <string name="alignement">Alignment: </string>
+    <string name="publisher">Publisher: </string>
+    <string name="physical_description">Physical description</string>
+    <string name="gender">Gender: </string>
+    <string name="race">Race: </string>
+    <string name="height">Height: </string>
+    <string name="weight">Weight: </string>
+    <string name="eye_color">Eye color: </string>
+    <string name="hair_color">Hair color: </string>
+    <string name="occupation_base">Occupation and base</string>
+    <string name="occupation">Occupation: </string>
+    <string name="base">Base: </string>
+    <string name="affiliations">Known affiliations</string>
+    <string name="groups">Groups: </string>
+    <string name="relatives">Relatives: </string>
+
+    <!--FinderScreen -->
+    <string name="find">find</string>
+
 </resources>

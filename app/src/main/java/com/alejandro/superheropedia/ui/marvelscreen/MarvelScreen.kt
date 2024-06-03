@@ -28,9 +28,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.rememberAsyncImagePainter
+import com.alejandro.superheropedia.R
 import com.alejandro.superheropedia.domain.FilterModel
 import com.alejandro.superheropedia.domain.HeroModel
 
@@ -57,7 +59,7 @@ fun MarvelScreen(marvelViewModel: MarvelViewModel) {
                 }
             }
         } else {
-            Text(text = "No heroes found")
+            Text(text = stringResource(id = R.string.no_values))
         }
     }
 }
@@ -83,7 +85,7 @@ fun ButtonScreen(
                 .fillMaxWidth()
                 .padding(16.dp)
         ) {
-            Text(text = "Marvel Heroes", fontSize=30.sp)
+            Text(text = stringResource(id = R.string.marvel_heroes), fontSize=30.sp)
         }
 
         Button(
@@ -94,7 +96,7 @@ fun ButtonScreen(
                 .height(200.dp)
                 .padding(16.dp)
         ) {
-            Text(text = "Marvel Villains", fontSize=30.sp)
+            Text(text = stringResource(id = R.string.marvel_villains), fontSize=30.sp)
         }
     }
 }

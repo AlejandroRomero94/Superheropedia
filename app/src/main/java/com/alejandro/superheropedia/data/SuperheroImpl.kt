@@ -1,6 +1,7 @@
 package com.alejandro.superheropedia.data
 
 import android.util.Log
+import com.alejandro.superheropedia.R
 import com.alejandro.superheropedia.data.network.SuperheroApiService
 import com.alejandro.superheropedia.domain.FilterModel
 import com.alejandro.superheropedia.domain.HeroModel
@@ -15,7 +16,7 @@ class RepositoryImpl @Inject constructor(private val superheroApiService: Superh
     override suspend fun getSuperheroes(superheroName: String): List<SuperheroModel>? {
         runCatching { superheroApiService.getSuperheroes(superheroName) }
             .onSuccess { response -> return response.superheroes?.map { it.toDomain() } }
-            .onFailure { Log.i("alex", "Ha ocurrido un error") }
+            .onFailure { Log.i("RepositoryImpl", R.string.error_message.toString()) }
         return null
     }
 
@@ -30,8 +31,8 @@ class RepositoryImpl @Inject constructor(private val superheroApiService: Superh
         }
             .onFailure { e_ ->
                 Log.e(
-                    "alex",
-                    "Ha ocurrido un error en la función del repositoryIMpl"
+                    "RepositoryImpl",
+                    R.string.error_message.toString()
                 )
             }
             .getOrNull()
@@ -40,7 +41,7 @@ class RepositoryImpl @Inject constructor(private val superheroApiService: Superh
         override suspend fun getSuperheroDetail(superheroId:String):HeroModel?{
             runCatching { superheroApiService.getSuperheroDetail(superheroId) }
                 .onSuccess { response ->return response.toDomain()}
-                .onFailure { Log.i("SuperheroImpl", "Ha ocurrido un error") }
+                .onFailure { Log.i("RepositoryImpl", R.string.error_message.toString()) }
                 return null
         }
 }
