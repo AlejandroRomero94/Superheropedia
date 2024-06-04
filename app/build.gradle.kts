@@ -53,21 +53,24 @@ android {
 }
 
 dependencies {
-    //Retrofit
-    implementation("com.squareup.retrofit2:retrofit:2.9.0")
-    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+
     //ViewModels
-    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.3.1")
-    implementation("androidx.compose.runtime:runtime-livedata:1.2.1")
+    implementation(libs.lifecycle)
+    implementation(libs.livedata)
+
     //ComposeNavigation
-    implementation("androidx.navigation:navigation-compose:2.7.0")
+    implementation(libs.navigation.compose)
+
     //Picasso
     implementation("com.squareup.picasso:picasso:2.8")
+
     //Coil
     implementation("io.coil-kt:coil-compose:2.6.0")
+
     //DataStore
     implementation("androidx.datastore:datastore-preferences:1.0.0")
-//Dagger Hilt
+
+    //Dagger Hilt
     implementation("com.google.dagger:hilt-android:2.48")
     implementation("androidx.hilt:hilt-navigation-compose:1.2.0")
     kapt ("com.google.dagger:hilt-android-compiler:2.48")
@@ -75,9 +78,11 @@ dependencies {
     //Corutinas
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.0")
 
+    //Retrofit
+    implementation(libs.retrofit)
+    implementation(libs.retrofit.gson)
 
-
-    //Resto
+    //UI
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
@@ -87,6 +92,8 @@ dependencies {
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
     implementation(libs.androidx.navigation.runtime.ktx)
+
+    //Testing
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -94,7 +101,4 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
-
-
-
 }

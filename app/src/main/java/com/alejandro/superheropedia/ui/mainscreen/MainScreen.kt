@@ -5,12 +5,14 @@ import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.alejandro.superheropedia.domain.NavigationBarScreen
 import com.alejandro.superheropedia.ui.navigation.AddItem
 import com.alejandro.superheropedia.ui.navigation.MyBottomNavigation
+import com.alejandro.superheropedia.ui.theme.SuperheropediaTheme
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
@@ -23,7 +25,7 @@ fun MainScreen() {
         bottomBar = { NavigationBar(navController = navController)}
 
         ) {innerPadding->
-        MyBottomNavigation(navController = navController, innerPadding=innerPadding)
+        MyBottomNavigation(navController = navController, innerPadding = innerPadding)
     }
 }
 
@@ -46,6 +48,17 @@ fun NavigationBar(navController: NavHostController) {
                 navController = navController
             )
         }
+    }
+}
 
+@Preview
+@Composable
+fun MainScreenTestPreview() {}
+
+@Preview(showBackground = true)
+@Composable
+fun MainScreenPreview() {
+    SuperheropediaTheme {
+        MainScreen()
     }
 }

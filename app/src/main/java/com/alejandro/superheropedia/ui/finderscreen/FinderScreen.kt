@@ -1,8 +1,6 @@
 package com.alejandro.superheropedia.ui.finderscreen
 
 import android.annotation.SuppressLint
-import android.content.Context
-import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -32,26 +30,30 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.viewmodel.CreationExtras
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import coil.compose.rememberAsyncImagePainter
+import com.alejandro.superheropedia.data.network.response.BiographyResponse
+import com.alejandro.superheropedia.data.network.response.SuperheroImageResponse
 import com.alejandro.superheropedia.domain.SuperheroModel
 
 @Composable
-
 fun FinderScreen(findViewModel: FindViewModel, navController: NavHostController, onItemSelected:(String)->Unit) {
+    val searchResults by findViewModel.searchResults.collectAsState()
+    FinderScreenContent(searchResults, findViewModel::searchByName, navController, onItemSelected)
+}
 
+@Composable
+fun FinderScreenContent(heroList: List<SuperheroModel>,  onSearch: (String) -> Unit, navController: NavHostController, onItemSelected:(String)->Unit) {
     Column(modifier = Modifier.fillMaxSize()) {
         Box(
             modifier = Modifier
@@ -62,8 +64,7 @@ fun FinderScreen(findViewModel: FindViewModel, navController: NavHostController,
                 .background(Color.Black),
             contentAlignment = Alignment.Center
         ) {
-            HeroSearchBar(findViewModel){}
-
+            HeroSearchBar(onSearch)
         }
         Box(
             modifier = Modifier
@@ -71,27 +72,20 @@ fun FinderScreen(findViewModel: FindViewModel, navController: NavHostController,
                 .background(Color.Black)
                 .weight(5f)
         ) {
-            SuperheroList(findViewModel, navController,onItemSelected)
+            SuperheroList(heroList, navController,onItemSelected)
         }
     }
-
-
 }
 
 @SuppressLint("SuspiciousIndentation")
 @Composable
-fun SuperheroList(findViewModel: FindViewModel, navController: NavHostController,onItemSelected:(String)->Unit ) {
-    val searchResults by findViewModel.searchResults.collectAsState()
-
+fun SuperheroList(heroList: List<SuperheroModel>, navController: NavHostController,onItemSelected:(String)->Unit ) {
         LazyColumn {
-        items(searchResults) { superhero ->
+        items(heroList) { superhero ->
             SuperheroItem(superhero, navController, onItemSelected)
         }
     }
-
-    }
-
-
+}
 
 @Composable
 fun SuperheroItem(superhero: SuperheroModel, navController: NavHostController, onItemSelected:(String)->Unit) {
@@ -127,8 +121,7 @@ fun SuperheroItem(superhero: SuperheroModel, navController: NavHostController, o
 
 @Composable
 fun HeroSearchBar(
-    findViewModel: FindViewModel,
-    onTextChanged: (String) -> Unit
+    onSearch: (String) -> Unit
 ) {
 
     var text: String by remember {
@@ -140,7 +133,6 @@ fun HeroSearchBar(
         singleLine = true,
         onValueChange = { newText ->
             text = newText
-            onTextChanged(newText)
         },
         label = { Text(text = "find") },
         modifier = Modifier
@@ -154,23 +146,33 @@ fun HeroSearchBar(
         ),
         keyboardOptions = KeyboardOptions.Default.copy(imeAction = ImeAction.Search),
         keyboardActions = KeyboardActions(onSearch = {
-            findViewModel.searchByName(
-                text
-            )
-
+            onSearch(text)
         })
-
     )
-
-
-
 }
 
-
-
-
-
-
-
-
-
+@Preview(showBackground = true)
+@Composable
+fun FinderScreenContentPreview() {
+    val navController = rememberNavController()
+    val dummyHeroList = listOf(
+        SuperheroModel(
+            superheroesName = "Superman",
+            superheroesImage = SuperheroImageResponse("url"),
+            superheroBiography = BiographyResponse("1980", "good"),
+            superheroesId = "1"
+        ),
+        SuperheroModel(
+            superheroesName = "Batman",
+            superheroesImage = SuperheroImageResponse("url"),
+            superheroBiography = BiographyResponse("1980", "good"),
+            superheroesId = "2"
+        )
+    )
+    FinderScreenContent(
+        heroList = dummyHeroList,
+        navController = navController,
+        onItemSelected = {},
+        onSearch = {}
+    )
+}

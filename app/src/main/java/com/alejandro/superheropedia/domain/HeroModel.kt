@@ -15,6 +15,4 @@ data class HeroModel(
     var superheroAppearance:Appearance,
     var superheroWork: Work,
     var superheroConnections: Connections
-
-
 )

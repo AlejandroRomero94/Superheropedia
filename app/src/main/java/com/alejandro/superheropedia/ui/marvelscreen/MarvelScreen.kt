@@ -28,40 +28,54 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.rememberAsyncImagePainter
+import com.alejandro.superheropedia.data.network.response.BiographyFilter
+import com.alejandro.superheropedia.data.network.response.SuperheroImageFilterResponse
 import com.alejandro.superheropedia.domain.FilterModel
-import com.alejandro.superheropedia.domain.HeroModel
+import com.alejandro.superheropedia.ui.theme.SuperheropediaTheme
 
 
 @Composable
 fun MarvelScreen(marvelViewModel: MarvelViewModel) {
-
     val heroes by marvelViewModel.marvelHeroes.collectAsState()
     val showButtons by marvelViewModel.showButtons.collectAsState()
+    MarvelScreenContent(
+        showButtons,
+        heroes,
+        onHeroesButtonClick = { marvelViewModel.getMarvelGoodHeroes() },
+        onVillainsButtonClick = { marvelViewModel.getMarvelVillains() }
+    )
+}
+
+@Composable
+fun MarvelScreenContent(
+    showButtons: Boolean,
+    heroes: List<FilterModel>?,
+    onHeroesButtonClick: () -> Unit,
+    onVillainsButtonClick: () -> Unit) {
 
     if (showButtons) {
-        ButtonScreen(onHeroesButtonClick = {
-            marvelViewModel.getMarvelGoodHeroes()
-        },
-            onVillainsButtonClick = {
-                marvelViewModel.getMarvelVillains()
-            })
+        ButtonScreen(
+            onHeroesButtonClick = onHeroesButtonClick,
+            onVillainsButtonClick = onVillainsButtonClick)
     } else {
-        if (heroes.isNotEmpty()) {
-            LazyVerticalGrid(columns = GridCells.Fixed(3)) {
+        if (heroes != null) {
+            if (heroes.isNotEmpty()) {
+                LazyVerticalGrid(columns = GridCells.Fixed(3)) {
 
-                items(heroes) { hero ->
-                    MarvelSuperheroItem(hero = hero)
+                    items(heroes) { hero ->
+                        MarvelSuperheroItem(hero = hero)
+                    }
                 }
+            } else {
+                Text(text = "No heroes found")
             }
-        } else {
-            Text(text = "No heroes found")
         }
     }
 }
-
 
 @Composable
 fun ButtonScreen(
@@ -126,13 +140,41 @@ fun MarvelSuperheroItem(hero: FilterModel) {
             Text(text = hero.superheroName)
         }
     }
-
 }
 
+@Preview(showBackground = true)
+@Composable
+fun MarvelScreenButtonsPreview() {
+    SuperheropediaTheme {
+        MarvelScreenContent(
+            true,
+            null,
+            onHeroesButtonClick = {},
+            onVillainsButtonClick = {}
+        )
+    }
+}
 
-
-
-
-
-
-
+@Preview(showBackground = true)
+@Composable
+fun MarvelScreenListPreview() {
+    SuperheropediaTheme {
+        MarvelScreenContent(
+            false,
+            listOf(
+                FilterModel(
+                    "Iron Man",
+                    BiographyFilter("1990", "good"),
+                    SuperheroImageFilterResponse("url")
+                ),
+                FilterModel(
+                    "Thor",
+                    BiographyFilter("1983", "good"),
+                    SuperheroImageFilterResponse("url")
+                )
+            ),
+            onHeroesButtonClick = {},
+            onVillainsButtonClick = {}
+        )
+    }
+}

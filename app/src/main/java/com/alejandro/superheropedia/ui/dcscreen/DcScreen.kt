@@ -28,34 +28,51 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.rememberAsyncImagePainter
+import com.alejandro.superheropedia.data.network.response.BiographyFilter
+import com.alejandro.superheropedia.data.network.response.SuperheroImageFilterResponse
 import com.alejandro.superheropedia.domain.FilterModel
-import com.alejandro.superheropedia.domain.HeroModel
+import com.alejandro.superheropedia.ui.theme.SuperheropediaTheme
 
 @Composable
 fun DcScreen(dcViewModel: DcViewModel) {
     val heroes by dcViewModel.dcHeroes.collectAsState()
     val showButtons by dcViewModel.showButtons.collectAsState()
+    DcScreenContent(
+        showButtons,
+        heroes,
+        onHeroesButtonClick = { dcViewModel.getDcHeroes() },
+        onVillainsButtonClick = { dcViewModel.getDcVillains() }
+    )
+}
+
+@Composable
+fun DcScreenContent(
+    showButtons: Boolean,
+    heroes: List<FilterModel>?,
+    onHeroesButtonClick: () -> Unit,
+    onVillainsButtonClick: () -> Unit
+) {
 
     if (showButtons) {
-        ButtonScreen(onHeroesButtonClick = {
-            dcViewModel.getDcHeroes()
-        },
-            onVillainsButtonClick = {
-                dcViewModel.getDcVillains()
-            })
+        ButtonScreen(
+            onHeroesButtonClick = onHeroesButtonClick,
+            onVillainsButtonClick = onVillainsButtonClick)
     } else {
-        if (heroes.isNotEmpty()) {
-            LazyVerticalGrid(columns = GridCells.Fixed(3)) {
+        if (heroes != null) {
+            if (heroes.isNotEmpty()) {
+                LazyVerticalGrid(columns = GridCells.Fixed(3)) {
 
-                items(heroes) { hero ->
-                    DCSuperheroItem(hero = hero)
+                    items(heroes) { hero ->
+                        DCSuperheroItem(hero = hero)
+                    }
                 }
+            } else {
+                Text(text = "No heroes found")
             }
-        } else {
-            Text(text = "No heroes found")
         }
     }
 }
@@ -97,7 +114,6 @@ fun ButtonScreen(
     }
 }
 
-
 @Composable
 fun DCSuperheroItem(hero: FilterModel) {
     Card(
@@ -123,5 +139,42 @@ fun DCSuperheroItem(hero: FilterModel) {
             Spacer(modifier = Modifier.width(8.dp))
             Text(text = hero.superheroName)
         }
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun DCScreenButtonsPreview() {
+    SuperheropediaTheme {
+        DcScreenContent(
+            true,
+            null,
+            onHeroesButtonClick = {},
+            onVillainsButtonClick = {}
+        )
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun DCScreenListPreview() {
+    SuperheropediaTheme {
+        DcScreenContent(
+            false,
+            listOf(
+                FilterModel(
+                    "Batman",
+                    BiographyFilter("1995", "good"),
+                    SuperheroImageFilterResponse("url")
+                ),
+                FilterModel(
+                    "Superman",
+                    BiographyFilter("1980", "good"),
+                    SuperheroImageFilterResponse("url")
+                )
+            ),
+            onHeroesButtonClick = {},
+            onVillainsButtonClick = {}
+        )
     }
 }

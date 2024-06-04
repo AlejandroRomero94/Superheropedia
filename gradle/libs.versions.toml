@@ -8,13 +8,19 @@ espressoCore = "3.5.1"
 lifecycleRuntimeKtx = "2.7.0"
 activityCompose = "1.9.0"
 composeBom = "2023.08.00"
-navigationComposeVersion = "2.5.1"
 navigationRuntimeKtx = "2.7.7"
-navigationCompose="2.8.0-alpha08"
+retrofit = "2.9.0"
+lifecycle = "2.3.1"
+livedata = "1.2.1"
+navigation = "2.7.0"
 
 [libraries]
+retrofit = {group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit"}
+retrofit-gson = {group = "com.squareup.retrofit2", name = "converter-gson", version.ref = "retrofit"}
+lifecycle = {group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycle"}
+livedata = {group = "androidx.compose.runtime", name = "runtime-livedata", version.ref = "livedata"}
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
-androidx-navigation-compose-v251 = { module = "androidx.navigation:navigation-compose", version.ref = "navigationComposeVersion" }
+navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigation" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
@@ -29,8 +35,6 @@ androidx-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-man
 androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
 androidx-material3 = { group = "androidx.compose.material3", name = "material3" }
 androidx-navigation-runtime-ktx = { group = "androidx.navigation", name = "navigation-runtime-ktx", version.ref = "navigationRuntimeKtx" }
-androidx-navigation-compose={group="androidx.navigation", name="navigation-compose", version.ref="navigationCompose"}
-
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }

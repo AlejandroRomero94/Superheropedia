@@ -20,7 +20,6 @@ import com.alejandro.superheropedia.ui.finderscreen.FinderScreen
 import com.alejandro.superheropedia.ui.marvelscreen.MarvelScreen
 import com.alejandro.superheropedia.ui.marvelscreen.MarvelViewModel
 
-
 @Composable
 fun MyBottomNavigation(
     navController: NavHostController,
@@ -59,13 +58,8 @@ fun MyBottomNavigation(
             arguments = listOf(navArgument("superheroId") {
                 type = NavType.StringType
             })
-        ) { navBackStackEntry ->
-            val superheroId =
-                navBackStackEntry.arguments?.getString("superheroId")
-            if (superheroId != null) {
-                DetailScreen(detailViewModel, superheroId)
-            }
+        ) { _ ->
+            DetailScreen(detailViewModel)
         }
     }
 }
-
