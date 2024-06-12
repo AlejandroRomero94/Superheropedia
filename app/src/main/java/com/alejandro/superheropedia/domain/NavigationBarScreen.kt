@@ -5,30 +5,31 @@ import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.ui.graphics.vector.ImageVector
+import com.alejandro.superheropedia.R
 
 sealed class NavigationBarScreen(
     val route: String,
     val title: String,
-    val icon: ImageVector
+    val icon: Int
 ) {
 
 
     object Finder : NavigationBarScreen(
         route = "finder",
         title = "Finder",
-        icon = Icons.Default.Search
+        icon = R.drawable.ic_finder,
     )
 
     object Marvel : NavigationBarScreen(
         route = "marvel",
         title = "Marvel",
-        icon = Icons.Default.Star
+        icon = R.drawable.ic_avengers
     )
 
     object Dc : NavigationBarScreen(
         route = "dc",
         title = "Dc",
-        icon = Icons.Default.Person
+        icon = R.drawable.ic_dc
     )
 
 

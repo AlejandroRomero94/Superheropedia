@@ -1,10 +1,13 @@
 package com.alejandro.superheropedia.ui.navigation
 
 import androidx.compose.foundation.layout.RowScope
-import androidx.compose.material3.Icon
+import androidx.compose.foundation.layout.size
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.unit.dp
 import androidx.navigation.NavDestination
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavHostController
@@ -21,7 +24,12 @@ fun RowScope.AddItem(
             Text(text = screen.title)
         },
         icon={
-            Icon(imageVector=screen.icon, contentDescription = "")
+             androidx.compose.foundation.Image(
+                 painter = painterResource(id=screen.icon),
+                 contentDescription = "",
+                 modifier = Modifier.size(24.dp)
+             )
+
         },
         selected = currentDestination?.hierarchy?.any{
             it.route==screen.route
